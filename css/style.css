@@ -1,0 +1,5 @@
+body{margin:0;font-family:Georgia,serif;background:#2b2118;color:#f2e4b8}
+header{text-align:center;padding:2rem;background:#4b3621}.hero{text-align:center;padding:2rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;padding:1rem}
+.card{background:#5a4630;padding:1rem;border:2px solid #c9a34a;border-radius:10px;text-align:center}
+.shield svg{width:180px}
