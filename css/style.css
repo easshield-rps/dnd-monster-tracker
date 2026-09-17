@@ -1,5 +1,528 @@
-body{margin:0;font-family:Georgia,serif;background:#2b2118;color:#f2e4b8}
-header{text-align:center;padding:2rem;background:#4b3621}.hero{text-align:center;padding:2rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;padding:1rem}
-.card{background:#5a4630;padding:1rem;border:2px solid #c9a34a;border-radius:10px;text-align:center}
-.shield svg{width:180px}
+/* =====================================================
+   HUNTER'S LEDGER
+   Version 0.1
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --parchment:#efe2b8;
+    --parchment-dark:#dccb9a;
+
+    --wood:#4b2f1a;
+    --wood-dark:#2c1b10;
+
+    --gold:#c9a44b;
+    --gold-light:#f5dc8b;
+
+    --iron:#555;
+    --text:#2b2118;
+
+    --shadow:0 10px 35px rgba(0,0,0,.35);
+
+}
+
+body{
+
+    background:
+        radial-gradient(circle at top,#5b4328,#24170d);
+
+    font-family:'Cormorant Garamond',serif;
+
+    color:var(--text);
+
+    min-height:100vh;
+
+}
+
+
+/* =============================
+BOOK COVER
+============================= */
+
+#bookCover{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+    linear-gradient(#2d1a0f,#1d120b);
+
+    z-index:500;
+
+    transition:1s;
+
+}
+
+.cover{
+
+    width:520px;
+
+    max-width:90%;
+
+    background:#522f19;
+
+    border:12px solid #2d180b;
+
+    border-radius:12px;
+
+    box-shadow:var(--shadow);
+
+    padding:20px;
+
+}
+
+.coverBorder{
+
+    border:3px solid var(--gold);
+
+    padding:60px 30px;
+
+    text-align:center;
+
+}
+
+.crest{
+
+    font-size:70px;
+
+    color:var(--gold);
+
+    margin-bottom:30px;
+
+}
+
+.cover h1{
+
+    color:var(--gold);
+
+    font-family:'Cinzel',serif;
+
+    font-size:48px;
+
+    letter-spacing:3px;
+
+}
+
+.cover h2{
+
+    color:#ddd;
+
+    margin-top:15px;
+
+    font-weight:400;
+
+}
+
+.quote{
+
+    margin:40px 0;
+
+    font-size:24px;
+
+    color:#f0e7d0;
+
+    font-style:italic;
+
+}
+
+
+/* =============================
+BUTTON
+============================= */
+
+#openBook{
+
+    padding:18px 42px;
+
+    background:var(--gold);
+
+    border:none;
+
+    border-radius:50px;
+
+    cursor:pointer;
+
+    font-size:22px;
+
+    font-family:'Cinzel',serif;
+
+    transition:.35s;
+
+}
+
+#openBook:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 8px 25px rgba(255,220,120,.45);
+
+}
+
+
+/* =============================
+LEDGER
+============================= */
+
+#ledger{
+
+    width:100%;
+
+    min-height:100vh;
+
+    background:var(--parchment);
+
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+header{
+
+    background:linear-gradient(var(--wood),var(--wood-dark));
+
+    padding:40px;
+
+    color:white;
+
+    text-align:center;
+
+    border-bottom:6px solid var(--gold);
+
+}
+
+header h1{
+
+    font-family:'Cinzel',serif;
+
+    font-size:52px;
+
+}
+
+header p{
+
+    margin-top:10px;
+
+}
+
+
+/* =============================
+NAVIGATION
+============================= */
+
+nav{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    padding:25px;
+
+}
+
+.navButton{
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:var(--wood);
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    font-size:18px;
+
+}
+
+.navButton:hover{
+
+    background:var(--gold);
+
+    color:black;
+
+}
+
+.active{
+
+    background:var(--gold);
+
+    color:black;
+
+}
+
+
+/* =============================
+HERO
+============================= */
+
+.hero{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:60px;
+
+    padding:60px;
+
+    flex-wrap:wrap;
+
+}
+
+.shield{
+
+    width:180px;
+
+    height:210px;
+
+    background:linear-gradient(#666,#333);
+
+    clip-path:polygon(
+    50% 0,
+    92% 15%,
+    92% 58%,
+    50% 100%,
+    8% 58%,
+    8% 15%
+    );
+
+    border:6px solid var(--gold);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    box-shadow:var(--shadow);
+
+}
+
+.shieldPercent{
+
+    font-size:32px;
+
+    font-family:'Cinzel',serif;
+
+    color:white;
+
+}
+
+.overallStats{
+
+    text-align:center;
+
+}
+
+.overallStats h2{
+
+    font-size:60px;
+
+}
+
+.progressText{
+
+    margin-top:10px;
+
+    color:#555;
+
+}
+
+
+/* =============================
+SEARCH
+============================= */
+
+.searchSection{
+
+    display:flex;
+
+    justify-content:center;
+
+    padding:20px;
+
+}
+
+#searchBox{
+
+    width:650px;
+
+    max-width:90%;
+
+    padding:18px;
+
+    border:2px solid var(--gold);
+
+    border-radius:40px;
+
+    font-size:20px;
+
+    background:#fffdf5;
+
+}
+
+
+/* =============================
+CATEGORY GRID
+============================= */
+
+.categoryGrid{
+
+    width:90%;
+
+    margin:50px auto;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+}
+
+.categoryCard{
+
+    background:#fffaf0;
+
+    border:3px solid var(--gold);
+
+    border-radius:12px;
+
+    text-align:center;
+
+    padding:25px;
+
+    transition:.3s;
+
+    cursor:pointer;
+
+}
+
+.categoryCard:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:var(--shadow);
+
+}
+
+.miniShield{
+
+    width:70px;
+
+    height:80px;
+
+    margin:auto;
+
+    margin-bottom:15px;
+
+    background:linear-gradient(#666,#333);
+
+    clip-path:polygon(
+    50% 0,
+    92% 15%,
+    92% 58%,
+    50% 100%,
+    8% 58%,
+    8% 15%
+    );
+
+    border:3px solid var(--gold);
+
+}
+
+.categoryCard h3{
+
+    font-family:'Cinzel',serif;
+
+    margin-bottom:10px;
+
+}
+
+.categoryCard p{
+
+    font-size:20px;
+
+}
+
+
+/* =============================
+FOOTER
+============================= */
+
+footer{
+
+    text-align:center;
+
+    padding:30px;
+
+    color:#555;
+
+}
+
+
+/* =============================
+RESPONSIVE
+============================= */
+
+@media(max-width:700px){
+
+.hero{
+
+    padding:30px;
+
+}
+
+header h1{
+
+    font-size:38px;
+
+}
+
+.overallStats h2{
+
+    font-size:42px;
+
+}
+
+.cover h1{
+
+    font-size:36px;
+
+}
+
+.quote{
+
+    font-size:18px;
+
+}
+
+}
