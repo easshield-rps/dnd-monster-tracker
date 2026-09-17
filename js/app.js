@@ -95,15 +95,41 @@ function buildCategoryCards() {
 
         card.className = "categoryCard";
 
-        card.innerHTML = `
-            <div class="miniShield">${cat.icon}</div>
+card.innerHTML = `
+<div class="miniShield">
 
-            <h3>${cat.name}</h3>
+<svg viewBox="0 0 120 140" class="shieldSVG">
 
-            <p>${cat.done} / ${cat.total}</p>
+<path
+class="shieldBody"
+d="M60 5
+L110 25
+L100 90
+Q60 135
+20 90
+L10 25
+Z"/>
 
-            <small>${percent}% Complete</small>
-        `;
+<text
+x="60"
+y="72"
+text-anchor="middle"
+font-size="34">
+
+${cat.icon}
+
+</text>
+
+</svg>
+
+</div>
+
+<h3>${cat.name}</h3>
+
+<p>${cat.done} / ${cat.total}</p>
+
+<small>${percent}% Complete</small>
+`;
 
         card.style.opacity = 0;
         card.style.transform = "translateY(25px)";
