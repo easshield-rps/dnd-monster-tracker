@@ -1,11 +1,35 @@
 /* ==========================================================
    Hunter's Ledger
-   Version 0.1
+   Version 0.2
 ========================================================== */
 
 const openButton = document.getElementById("openBook");
 const cover = document.getElementById("bookCover");
 const ledger = document.getElementById("ledger");
+
+const categories = [
+    { name: "Aberration", total: 18, done: 9, icon: "👁️" },
+    { name: "Beast", total: 94, done: 28, icon: "🐺" },
+    { name: "Celestial", total: 7, done: 1, icon: "⭐" },
+    { name: "Construct", total: 16, done: 9, icon: "⚙️" },
+    { name: "Dragon", total: 45, done: 11, icon: "🐉" },
+    { name: "Elemental", total: 23, done: 7, icon: "🔥" },
+    { name: "Fey", total: 7, done: 3, icon: "🍃" },
+    { name: "Fiend", total: 37, done: 7, icon: "😈" },
+    { name: "Giant", total: 13, done: 4, icon: "🪓" },
+    { name: "Humanoid", total: 74, done: 25, icon: "⚔️" },
+    { name: "Monstrosity", total: 51, done: 8, icon: "🦴" },
+    { name: "Ooze", total: 4, done: 2, icon: "💧" },
+    { name: "Plant", total: 14, done: 5, icon: "🌿" },
+    { name: "Undead", total: 31, done: 11, icon: "💀" }
+];
+
+const overallDone = 130;
+const overallTotal = 434;
+
+/* ============================
+   Open the Ledger
+============================ */
 
 openButton.addEventListener("click", () => {
 
@@ -15,192 +39,119 @@ openButton.addEventListener("click", () => {
     setTimeout(() => {
 
         cover.style.display = "none";
-
         ledger.classList.remove("hidden");
 
         animateCounter();
+        buildCategoryCards();
 
-        animateCards();
-
-    }, 900);
+    }, 700);
 
 });
 
+/* ============================
+   Overall Percentage
+============================ */
 
-/* ==========================================================
-   Dashboard Data
-========================================================== */
-
-const categories = [
-
-    { name:"Aberration", total:18, done:9 },
-
-    { name:"Beast", total:94, done:28 },
-
-    { name:"Celestial", total:7, done:1 },
-
-    { name:"Construct", total:16, done:9 },
-
-    { name:"Dragon", total:45, done:11 },
-
-    { name:"Elemental", total:23, done:7 },
-
-    { name:"Fey", total:7, done:3 },
-
-    { name:"Fiend", total:37, done:7 },
-
-    { name:"Giant", total:13, done:4 },
-
-    { name:"Humanoid", total:74, done:25 },
-
-    { name:"Monstrosity", total:51, done:8 },
-
-    { name:"Ooze", total:4, done:2 },
-
-    { name:"Plant", total:14, done:5 },
-
-    { name:"Undead", total:31, done:11 }
-
-];
-
-const overallDone = 130;
-const overallTotal = 434;
-
-
-/* ==========================================================
-   Animated Percentage
-========================================================== */
-
-function animateCounter(){
+function animateCounter() {
 
     const percent = document.getElementById("overallPercent");
 
-    let value = 0;
+    let current = 0;
 
-    const target = ((overallDone / overallTotal) * 100);
+    const target = (overallDone / overallTotal) * 100;
 
-    const timer = setInterval(()=>{
+    const timer = setInterval(() => {
 
-        value += 0.5;
+        current += 0.5;
 
-        if(value >= target){
+        if (current >= target) {
 
-            value = target;
-
+            current = target;
             clearInterval(timer);
 
         }
 
-        percent.textContent = value.toFixed(1) + "%";
+        percent.textContent = current.toFixed(1) + "%";
 
-    },15);
+    }, 15);
 
 }
 
+/* ============================
+   Build Dashboard
+============================ */
 
-/* ==========================================================
-   Card Animation
-========================================================== */
+function buildCategoryCards() {
 
-function animateCards(){
+    const grid = document.querySelector(".categoryGrid");
 
-    const cards = document.querySelectorAll(".categoryCard");
+    grid.innerHTML = "";
 
-    cards.forEach((card,index)=>{
+    categories.forEach((cat, index) => {
 
-        card.style.opacity = "0";
+        const percent = ((cat.done / cat.total) * 100).toFixed(0);
 
-        card.style.transform = "translateY(30px)";
+        const card = document.createElement("div");
 
-        setTimeout(()=>{
+        card.className = "categoryCard";
 
-            card.style.transition = ".45s";
+        card.innerHTML = `
+            <div class="miniShield">${cat.icon}</div>
 
-            card.style.opacity = "1";
+            <h3>${cat.name}</h3>
 
+            <p>${cat.done} / ${cat.total}</p>
+
+            <small>${percent}% Complete</small>
+        `;
+
+        card.style.opacity = 0;
+        card.style.transform = "translateY(25px)";
+
+        setTimeout(() => {
+
+            card.style.transition = ".35s";
+            card.style.opacity = 1;
             card.style.transform = "translateY(0)";
 
-        },index*70);
+        }, index * 60);
+
+        card.addEventListener("click", () => {
+
+            alert(`${cat.name} Bestiary coming in Version 0.3`);
+
+        });
+
+        grid.appendChild(card);
 
     });
 
 }
 
-
-/* ==========================================================
-   Search Placeholder
-========================================================== */
+/* ============================
+   Search
+============================ */
 
 const searchBox = document.getElementById("searchBox");
 
-searchBox.addEventListener("keyup",()=>{
+searchBox.addEventListener("input", () => {
 
     const search = searchBox.value.toLowerCase();
 
-    const cards = document.querySelectorAll(".categoryCard");
+    document.querySelectorAll(".categoryCard").forEach(card => {
 
-    cards.forEach(card=>{
+        const title = card.querySelector("h3").textContent.toLowerCase();
 
-        const name = card.querySelector("h3").textContent.toLowerCase();
+        if (title.includes(search)) {
 
-        if(name.includes(search)){
+            card.style.display = "";
 
-            card.style.display="block";
+        } else {
 
-        }
-
-        else{
-
-            card.style.display="none";
+            card.style.display = "none";
 
         }
 
     });
 
 });
-
-
-/* ==========================================================
-   Card Clicks
-========================================================== */
-
-document.querySelectorAll(".categoryCard").forEach(card=>{
-
-    card.addEventListener("click",()=>{
-
-        const title = card.querySelector("h3").textContent;
-
-        alert(title + " page coming in Version 0.2!");
-
-    });
-
-});
-
-
-/* ==========================================================
-   Future Expansion
-========================================================== */
-
-/*
-
-Stage 2
-
-Monster Database
-
-Monster Cards
-
-Filters
-
-Search by Name
-
-Search by CR
-
-AI Artwork
-
-Achievements
-
-Settings
-
-GitHub Sync
-
-*/
