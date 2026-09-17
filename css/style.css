@@ -543,3 +543,35 @@ header h1{
 }
 
 }
+
+.progressBar{
+
+    width:100%;
+    height:12px;
+
+    background:#d7c69a;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:12px 0;
+
+}
+
+.progressFill{
+
+    height:100%;
+
+    width:0;
+
+    background:linear-gradient(
+        90deg,
+        #8c6b14,
+        #d4b45f,
+        #f7df87
+    );
+
+    transition:1s;
+
+}
