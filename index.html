@@ -1,18 +1,313 @@
-<!DOCTYPE html><html><head><meta charset='UTF-8'>
-<meta name='viewport' content='width=device-width,initial-scale=1'>
-<title>Hunter's Ledger</title>
-<link rel='stylesheet' href='css/style.css'></head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hunter's Ledger</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Temporary fonts - can replace later -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;700&display=swap" rel="stylesheet">
+
+</head>
+
 <body>
-<header><h1>⚔ Hunter's Ledger</h1><p>The Guild's Official Bestiary</p></header>
-<main>
-<section class='hero'>
-<div class='shield'><svg viewBox="0 0 120 140">
-<path d="M60 5 L110 25 L100 90 Q60 135 20 90 L10 25 Z" fill="#444"/>
-<circle cx="60" cy="60" r="35" fill="none" stroke="#c9a34a" stroke-width="8"/>
-<circle id="progress" cx="60" cy="60" r="35" fill="none" stroke="#3aa657" stroke-width="8" stroke-linecap="round" transform="rotate(-90 60 60)"/>
-<text x="60" y="66" text-anchor="middle" fill="white" font-size="16">30%</text>
-</svg></div>
-<h2>130 / 434 Catalogued</h2></section>
-<div id='cats' class='grid'></div>
-</main>
-<script src='js/app.js'></script></body></html>
+
+<div id="bookCover">
+
+    <div class="cover">
+
+        <div class="coverBorder">
+
+            <div class="crest">
+
+                ⚔
+
+            </div>
+
+            <h1>Hunter's Ledger</h1>
+
+            <h2>Property of the Adventurers' Guild</h2>
+
+            <p class="quote">
+
+                "Knowledge is our greatest weapon."
+
+            </p>
+
+            <button id="openBook">
+
+                Open Ledger
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div id="ledger" class="hidden">
+
+<header>
+
+    <div class="titleArea">
+
+        <h1>Hunter's Ledger</h1>
+
+        <p>The Guild's Official Bestiary</p>
+
+    </div>
+
+</header>
+
+
+<nav>
+
+    <button class="navButton active">Dashboard</button>
+    <button class="navButton">Bestiary</button>
+    <button class="navButton">Achievements</button>
+    <button class="navButton">Settings</button>
+
+</nav>
+
+
+<section class="hero">
+
+    <div class="overallShield">
+
+        <div class="shield">
+
+            <div class="shieldPercent">
+
+                <span id="overallPercent">29.95%</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="overallStats">
+
+        <h2>
+
+            130 / 434
+
+        </h2>
+
+        <p>
+
+            Creatures Catalogued
+
+        </p>
+
+        <div class="progressText">
+
+            304 Remaining
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="searchSection">
+
+<input
+
+type="text"
+
+id="searchBox"
+
+placeholder="Search the Bestiary..."
+
+>
+
+</section>
+
+
+<section class="categoryGrid">
+
+<div class="categoryCard">
+
+<div class="miniShield"></div>
+
+<h3>Aberration</h3>
+
+<p>9 / 18</p>
+
+</div>
+
+
+<div class="categoryCard">
+
+<div class="miniShield"></div>
+
+<h3>Beast</h3>
+
+<p>28 / 94</p>
+
+</div>
+
+
+<div class="categoryCard">
+
+<div class="miniShield"></div>
+
+<h3>Celestial</h3>
+
+<p>1 / 7</p>
+
+</div>
+
+
+<div class="categoryCard">
+
+<div class="miniShield"></div>
+
+<h3>Construct</h3>
+
+<p>9 / 16</p>
+
+</div>
+
+
+<div class="categoryCard">
+
+<div class="miniShield"></div>
+
+<h3>Dragon</h3>
+
+<p>11 / 45</p>
+
+</div>
+
+
+<div class="categoryCard">
+
+<div class="miniShield"></div>
+
+<h3>Elemental</h3>
+
+<p>7 / 23</p>
+
+</div>
+
+
+<div class="categoryCard">
+
+<div class="miniShield"></div>
+
+<h3>Fey</h3>
+
+<p>3 / 7</p>
+
+</div>
+
+
+<div class="categoryCard">
+
+<div class="miniShield"></div>
+
+<h3>Fiend</h3>
+
+<p>7 / 37</p>
+
+</div>
+
+
+<div class="categoryCard">
+
+<div class="miniShield"></div>
+
+<h3>Giant</h3>
+
+<p>4 / 13</p>
+
+</div>
+
+
+<div class="categoryCard">
+
+<div class="miniShield"></div>
+
+<h3>Humanoid</h3>
+
+<p>25 / 74</p>
+
+</div>
+
+
+<div class="categoryCard">
+
+<div class="miniShield"></div>
+
+<h3>Monstrosity</h3>
+
+<p>8 / 51</p>
+
+</div>
+
+
+<div class="categoryCard">
+
+<div class="miniShield"></div>
+
+<h3>Ooze</h3>
+
+<p>2 / 4</p>
+
+</div>
+
+
+<div class="categoryCard">
+
+<div class="miniShield"></div>
+
+<h3>Plant</h3>
+
+<p>5 / 14</p>
+
+</div>
+
+
+<div class="categoryCard">
+
+<div class="miniShield"></div>
+
+<h3>Undead</h3>
+
+<p>11 / 31</p>
+
+</div>
+
+</section>
+
+
+
+<footer>
+
+Hunter's Ledger
+
+Version 0.1
+
+</footer>
+
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
