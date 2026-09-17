@@ -112,12 +112,10 @@ Z"/>
 
 <text
 x="60"
-y="72"
+y="70"
 text-anchor="middle"
 font-size="34">
-
 ${cat.icon}
-
 </text>
 
 </svg>
@@ -127,6 +125,10 @@ ${cat.icon}
 <h3>${cat.name}</h3>
 
 <p>${cat.done} / ${cat.total}</p>
+
+<div class="progressBar">
+    <div class="progressFill" style="width:${percent}%"></div>
+</div>
 
 <small>${percent}% Complete</small>
 `;
